@@ -10,23 +10,35 @@
     <div id="display"></div>
 
     <script>
-      if (window.location.pathname === '/projects') {
-        document.getElementById('title').textContent = 'Projects'
-        document.getElementById('display').textContent = 'Intentionally left blank'
+      document.addEventListener('DOMContentLoaded', function() {
+        let navbar = document.createElement('nav')
+        navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="#">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
 
-        // let ele = document.createElement('title')
-        // ele.textContent = 'Projects'
-        // document.getElementById('display').appendChild(ele)
-      } else if (window.location.pathname === '/contact') {
-        document.getElementById('title').textContent = 'Contact'
-        document.getElementById('display').innerHTML = '<a href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>'
-      } else if (window.location.pathname === '/etc') {
-        document.getElementById('title').textContent = 'Etc'
-        document.getElementById('display').textContent = 'Intentionally left blank'
-      } else {
-        document.getElementById('title').textContent = '404 error'
-        document.getElementById('display').textContent = 'Not Found'
-      }
+        let turtle = document.createElement('img')
+        turtle.setAttribute('src', './turtle.png')
+        turtle.setAttribute('alt', 'A turtle')
+
+        if (window.location.pathname === '/projects') {
+          document.getElementById('title').textContent = 'Projects'
+          document.getElementById('display').appendChild(navbar)
+          document.getElementById('display').appendChild(turtle)
+
+        } else if (window.location.pathname === '/contact') {
+          document.getElementById('title').textContent = 'Contact'
+          document.getElementById('display').appendChild(navbar)
+          document.getElementById('display').innerHTML = '<a href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>'
+
+        } else if (window.location.pathname === '/etc') {
+          document.getElementById('title').textContent = 'Etc'
+          document.getElementById('display').appendChild(navbar)
+          document.getElementById('display').appendChild(turtle)
+
+        } else {
+          document.getElementById('title').textContent = '404 error'
+          document.getElementById('display').textContent = 'Not Found'
+
+        }
+      })
     </script>
   </body>
 </html>
