@@ -17,29 +17,40 @@
         let turtle = document.createElement('img')
         turtle.setAttribute('src', './turtle.png')
         turtle.setAttribute('alt', 'A turtle')
+        turtle.setAttribute('id', 'turtle')
 
         let email = document.createElement('a')
         email.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
         email.textContent = 'alegremrvn@protonmail.com'
 
+        let error = document.createElement('p')
+        error.textContent = 'Not Found'
+
+        let hr = document.createElement('hr')
+
         if (window.location.pathname === '/projects') {
-          document.getElementById('title').textContent = 'Projects'
+          document.getElementById('title').textContent = 'Projects | alegremrvn'
           document.getElementById('display').appendChild(navbar)
           document.getElementById('display').appendChild(turtle)
 
         } else if (window.location.pathname === '/contact') {
-          document.getElementById('title').textContent = 'Contact'
+          document.getElementById('title').textContent = 'Contact | alegremrvn'
           document.getElementById('display').appendChild(navbar)
           document.getElementById('display').appendChild(email)
-
+          document.getElementById('display').appendChild(hr)
+          document.getElementById('display').appendChild(turtle)
+          
         } else if (window.location.pathname === '/etc') {
-          document.getElementById('title').textContent = 'Etc'
+          document.getElementById('title').textContent = 'Etc | alegremrvn'
           document.getElementById('display').appendChild(navbar)
           document.getElementById('display').appendChild(turtle)
 
         } else {
-          document.getElementById('title').textContent = '404 error'
-          document.getElementById('display').textContent = 'Not Found'
+          document.getElementById('title').textContent = '404 | alegremrvn'
+          document.getElementById('display').appendChild(navbar)
+          document.getElementById('display').appendChild(error)
+          document.getElementById('display').appendChild(hr)
+          document.getElementById('display').appendChild(turtle)
 
         }
       })
