@@ -12,11 +12,15 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         let navbar = document.createElement('nav')
-        navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="#">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
+        navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="/">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
 
         let turtle = document.createElement('img')
         turtle.setAttribute('src', './turtle.png')
         turtle.setAttribute('alt', 'A turtle')
+
+        let email = document.createElement('a')
+        email.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
+        email.textContent = 'alegremrvn@protonmail.com'
 
         if (window.location.pathname === '/projects') {
           document.getElementById('title').textContent = 'Projects'
@@ -26,7 +30,7 @@
         } else if (window.location.pathname === '/contact') {
           document.getElementById('title').textContent = 'Contact'
           document.getElementById('display').appendChild(navbar)
-          document.getElementById('display').innerHTML = '<a href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>'
+          document.getElementById('display').appendChild(email)
 
         } else if (window.location.pathname === '/etc') {
           document.getElementById('title').textContent = 'Etc'
