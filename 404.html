@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>My App</title>
+    <title id="title"></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
   </head>
   <body>
-    <h1>My App</h1>
-    <h2 id="header">Post Path: {PATH}</h2>
-  </body>
-  <script>
-    if (window.location.hash.length > 1) {
-      const path = window.location.hash.replace('#', '')
-      history.pushState({ page: 1 }, "Some title", '/static-dynamic-routing' + path)
+    <div id="display"></div>
 
-      document.getElementById('header').innerHTML = document.getElementById('header').innerHTML.replace('{PATH}', path)
-    }
-  </script>
+    <script>
+      if (window.location.pathname === '/projects') {
+        document.getElementById('title').textContent = 'Projects'
+        document.getElementById('display').textContent = 'Intentionally left blank'
+
+        // let ele = document.createElement('title')
+        // ele.textContent = 'Projects'
+        // document.getElementById('display').appendChild(ele)
+      } else if (window.location.pathname === '/contact') {
+        document.getElementById('title').textContent = 'Contact'
+        document.getElementById('display').innerHTML = '<a href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>'
+      } else if (window.location.pathname === '/etc') {
+        document.getElementById('title').textContent = 'Etc'
+        document.getElementById('display').textContent = 'Intentionally left blank'
+      } else {
+        document.getElementById('title').textContent = '404 error'
+        document.getElementById('display').textContent = 'Not Found'
+      }
+    </script>
+  </body>
 </html>
