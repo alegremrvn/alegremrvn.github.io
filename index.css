@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+}
+
+main {
+  padding: 10px;
+}
+
+h1 {
+  width: 700px;
+}
+
+#turtle {
+  width: 100px;
+}
+
+hr {
+  width: 700px;
+  margin-left: 0;
+}
+
+/* NAVBAR */
+#nav-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 700px;
+}
+
+.nav-li {
+  float: left;
+}
+
+.nav-li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.nav-li a:hover {
+  background-color: #111;
+}
+
+#about-btn {
+  background-color: #555;
+}
