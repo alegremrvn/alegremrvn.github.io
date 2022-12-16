@@ -20,11 +20,13 @@
         turtle.setAttribute('id', 'turtle')
 
         let hr = document.createElement('hr')
+        let display = document.getElementById('display')
+        let title = document.getElementById('title')
 
         if (window.location.pathname === '/projects') {
-          document.getElementById('title').textContent = 'Projects | alegremrvn'
-          document.getElementById('display').appendChild(navbar)
-          document.getElementById('display').appendChild(turtle)
+          title.textContent = 'Projects | alegremrvn'
+          display.appendChild(navbar)
+          display.appendChild(turtle)
 
         } else if (window.location.pathname === '/contact') {
           let email = document.createElement('p')
@@ -33,26 +35,26 @@
           emaillink.textContent = 'alegremrvn@protonmail.com'
           email.appendChild(emaillink)
 
-          document.getElementById('title').textContent = 'Contact | alegremrvn'
-          document.getElementById('display').appendChild(navbar)
-          document.getElementById('display').appendChild(email)
-          document.getElementById('display').appendChild(hr)
-          document.getElementById('display').appendChild(turtle)
+          title.textContent = 'Contact | alegremrvn'
+          display.appendChild(navbar)
+          display.appendChild(email)
+          display.appendChild(hr)
+          display.appendChild(turtle)
 
         } else if (window.location.pathname === '/etc') {
-          document.getElementById('title').textContent = 'Etc | alegremrvn'
-          document.getElementById('display').appendChild(navbar)
-          document.getElementById('display').appendChild(turtle)
+          title.textContent = 'Etc | alegremrvn'
+          display.appendChild(navbar)
+          display.appendChild(turtle)
 
         } else {
           let error = document.createElement('p')
           error.textContent = 'Not Found'
 
-          document.getElementById('title').textContent = '404 | alegremrvn'
-          document.getElementById('display').appendChild(navbar)
-          document.getElementById('display').appendChild(error)
-          document.getElementById('display').appendChild(hr)
-          document.getElementById('display').appendChild(turtle)
+          title.textContent = '404 | alegremrvn'
+          display.appendChild(navbar)
+          display.appendChild(error)
+          display.appendChild(hr)
+          display.appendChild(turtle)
 
         }
       })
