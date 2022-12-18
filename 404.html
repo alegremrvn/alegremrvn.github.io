@@ -38,6 +38,8 @@
           document.getElementById('projects-btn').style.backgroundColor = '#555'
 
           for (let i in projects) {
+            let main = document.createElement('main')
+
             let proj = document.createElement('div')
             proj.setAttribute('class', 'proj')
 
@@ -67,15 +69,17 @@
           display.appendChild(turtle)
 
         } else if (window.location.pathname === '/contact') {
+          let main = document.createElement('main')
           let email = document.createElement('p')
           let emaillink = document.createElement('a')
           emaillink.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
           emaillink.textContent = 'alegremrvn@protonmail.com'
           email.appendChild(emaillink)
+          main.appendChild(email)
 
           title.textContent = 'Contact | alegremrvn'
           display.appendChild(navbar)
-          display.appendChild(email)
+          display.appendChild(main)
           display.appendChild(hr)
           display.appendChild(turtle)
 
@@ -87,18 +91,20 @@
           display.appendChild(navbar)
           display.appendChild(turtle)
 
+          document.getElementById('about-btn').style.backgroundColor = '#333'
+          document.getElementById('etc-btn').style.backgroundColor = '#555'
+
         } else {
+          let main = document.createElement('main')
           let error = document.createElement('p')
           error.textContent = 'Not Found'
+          main.appendChild(error)
 
           title.textContent = '404 | alegremrvn'
           display.appendChild(navbar)
-          display.appendChild(error)
+          display.appendChild(main)
           display.appendChild(hr)
           display.appendChild(turtle)
-
-          document.getElementById('about-btn').style.backgroundColor = '#333'
-          document.getElementById('etc-btn').style.backgroundColor = '#555'
 
         }
       })
