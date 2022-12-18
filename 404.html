@@ -34,6 +34,9 @@
           title.textContent = 'Projects | alegremrvn'
           display.appendChild(navbar)
 
+          document.getElementById('about-btn').style.backgroundColor = '#333'
+          document.getElementById('projects-btn').style.backgroundColor = '#555'
+
           for (let i in projects) {
             let proj = document.createElement('div')
             proj.setAttribute('class', 'proj')
@@ -76,6 +79,9 @@
           display.appendChild(hr)
           display.appendChild(turtle)
 
+          document.getElementById('about-btn').style.backgroundColor = '#333'
+          document.getElementById('contact-btn').style.backgroundColor = '#555'
+
         } else if (window.location.pathname === '/etc') {
           title.textContent = 'Etc | alegremrvn'
           display.appendChild(navbar)
@@ -90,6 +96,9 @@
           display.appendChild(error)
           display.appendChild(hr)
           display.appendChild(turtle)
+
+          document.getElementById('about-btn').style.backgroundColor = '#333'
+          document.getElementById('etc-btn').style.backgroundColor = '#555'
 
         }
       })
