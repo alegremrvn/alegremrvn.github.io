@@ -14,9 +14,7 @@
         let navbar = document.createElement('nav')
         navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="/">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
 
-        let turtle = document.createElement('img')
-        turtle.setAttribute('src', './turtle.png')
-        turtle.setAttribute('alt', 'A turtle')
+        let turtle = document.createElement('div')
         turtle.setAttribute('id', 'turtle')
 
         let hr = document.createElement('hr')
@@ -24,8 +22,45 @@
         let title = document.getElementById('title')
 
         if (window.location.pathname === '/projects') {
+          let projects = [
+            {
+              name: "Philippine Earthquakes in 2022",
+              description: "A simple \"dashboard\" that summarizes the information on all earthquakes in the Philippines in the year 2022.",
+              tags: ["excel", "dashboard"],
+              location: "https://github.com/alegremrvn/philippine_earthquakes"
+            }
+          ]
+
           title.textContent = 'Projects | alegremrvn'
           display.appendChild(navbar)
+
+          for (let i in projects) {
+            let proj = document.createElement('div')
+            proj.setAttribute('class', 'proj')
+
+            let name = document.createElement('p')
+            name.textContent = projects[i].name
+            name.setAttribute('class', 'name')
+
+            let description = document.createElement('p')
+            description.textContent = projects[i].description
+            description.setAttribute('class', 'description')
+
+            proj.appendChild(name)
+            proj.appendChild(description)
+
+            let tags = document.createElement('div')
+            tags.setAttribute('class', 'tags')
+            for (let j in projects[i].tags) {
+              let tag = document.createElement('p')
+              tag.textContent = projects[i].tags[j]
+              tag.setAttribute('class', 'tag')
+              tags.appendChild(tag)
+            }
+            proj.appendChild(tags)
+
+          }
+
           display.appendChild(turtle)
 
         } else if (window.location.pathname === '/contact') {

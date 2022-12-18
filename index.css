@@ -10,10 +10,6 @@ h1 {
   width: 700px;
 }
 
-#turtle {
-  width: 100px;
-}
-
 hr {
   width: 700px;
   margin-left: 0;
@@ -47,4 +43,12 @@ hr {
 
 #about-btn {
   background-color: #555;
+}
+
+#turtle {
+  border: 3px solid #103f1d;
+  width: 65px;
+  height: 65px;
+  background-color: #7bad18;
+  margin: 16px;
 }
