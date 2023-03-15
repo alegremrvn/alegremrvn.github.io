@@ -1,168 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title id="title"></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-      body {
-        margin: 0;
-      }
 
-      main {
-        padding: 10px;
-      }
+<head>
+  <title id="title"></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+    }
 
-      h1 {
-        width: 700px;
-      }
+    main {
+      padding: 10px;
+    }
 
-      hr {
-        width: 700px;
-        margin-left: 0;
-      }
+    h1 {
+      width: 700px;
+    }
 
-      /* NAVBAR */
-      #nav-ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-        width: 700px;
-      }
+    hr {
+      width: 700px;
+      margin-left: 0;
+    }
 
-      .nav-li {
-        float: left;
-      }
+    /* NAVBAR */
+    #nav-ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      width: 700px;
+    }
 
-      .nav-li a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-      }
+    .nav-li {
+      float: left;
+    }
 
-      .nav-li a:hover {
-        background-color: #111;
-      }
+    .nav-li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
 
-      #about-btn {
-        background-color: #555;
-      }
+    .nav-li a:hover {
+      background-color: #111;
+    }
 
-      #turtle {
-        border: 3px solid #103f1d;
-        width: 65px;
-        height: 65px;
-        background-color: #7bad18;
-        margin: 16px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="display"></div>
+    #about-btn {
+      background-color: #555;
+    }
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        let navbar = document.createElement('nav')
-        navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="/">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
+    #turtle {
+      border: 3px solid #103f1d;
+      width: 65px;
+      height: 65px;
+      background-color: #7bad18;
+      margin: 16px;
+    }
+  </style>
+</head>
 
-        let turtle = document.createElement('div')
-        turtle.setAttribute('id', 'turtle')
+<body>
+  <div id="display"></div>
 
-        let hr = document.createElement('hr')
-        let display = document.getElementById('display')
-        let title = document.getElementById('title')
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let navbar = document.createElement('nav')
+      navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="/">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
 
-        if (window.location.pathname === '/projects') {
-          let projects = [
-            {
-              name: "Philippine Earthquakes in 2022",
-              description: "A simple \"dashboard\" that summarizes the information on all earthquakes in the Philippines in the year 2022.",
-              tags: ["excel", "dashboard"],
-              location: "https://github.com/alegremrvn/philippine_earthquakes"
-            }
-          ]
+      let turtle = document.createElement('div')
+      turtle.setAttribute('id', 'turtle')
 
-          title.textContent = 'Projects | alegremrvn'
-          display.appendChild(navbar)
+      let hr = document.createElement('hr')
+      let display = document.getElementById('display')
+      let title = document.getElementById('title')
 
-          document.getElementById('about-btn').style.backgroundColor = '#333'
-          document.getElementById('projects-btn').style.backgroundColor = '#555'
-
-          for (let i in projects) {
-            let main = document.createElement('main')
-
-            let proj = document.createElement('div')
-            proj.setAttribute('class', 'proj')
-
-            let name = document.createElement('p')
-            name.textContent = projects[i].name
-            name.setAttribute('class', 'name')
-
-            let description = document.createElement('p')
-            description.textContent = projects[i].description
-            description.setAttribute('class', 'description')
-
-            proj.appendChild(name)
-            proj.appendChild(description)
-
-            let tags = document.createElement('div')
-            tags.setAttribute('class', 'tags')
-            for (let j in projects[i].tags) {
-              let tag = document.createElement('p')
-              tag.textContent = projects[i].tags[j]
-              tag.setAttribute('class', 'tag')
-              tags.appendChild(tag)
-            }
-            proj.appendChild(tags)
-
+      if (window.location.pathname === '/projects') {
+        let projects = [
+          {
+            name: "Philippine Earthquakes in 2022",
+            description: "A simple \"dashboard\" that summarizes the information on all earthquakes in the Philippines in the year 2022.",
+            tags: ["excel", "dashboard"],
+            location: "https://github.com/alegremrvn/philippine_earthquakes"
           }
+        ]
 
-          display.appendChild(turtle)
+        title.textContent = 'Projects | alegremrvn'
+        display.appendChild(navbar)
 
-        } else if (window.location.pathname === '/contact') {
+        document.getElementById('about-btn').style.backgroundColor = '#333'
+        document.getElementById('projects-btn').style.backgroundColor = '#555'
+
+        for (let i in projects) {
           let main = document.createElement('main')
-          let email = document.createElement('p')
-          let emaillink = document.createElement('a')
-          emaillink.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
-          emaillink.textContent = 'alegremrvn@protonmail.com'
-          email.appendChild(emaillink)
-          main.appendChild(email)
 
-          title.textContent = 'Contact | alegremrvn'
-          display.appendChild(navbar)
-          display.appendChild(main)
-          display.appendChild(hr)
-          display.appendChild(turtle)
+          let proj = document.createElement('div')
+          proj.setAttribute('class', 'proj')
 
-          document.getElementById('about-btn').style.backgroundColor = '#333'
-          document.getElementById('contact-btn').style.backgroundColor = '#555'
+          let name = document.createElement('p')
+          name.textContent = projects[i].name
+          name.setAttribute('class', 'name')
 
-        } else if (window.location.pathname === '/etc') {
-          title.textContent = 'Etc | alegremrvn'
-          display.appendChild(navbar)
-          display.appendChild(turtle)
+          let description = document.createElement('p')
+          description.textContent = projects[i].description
+          description.setAttribute('class', 'description')
 
-          document.getElementById('about-btn').style.backgroundColor = '#333'
-          document.getElementById('etc-btn').style.backgroundColor = '#555'
+          proj.appendChild(name)
+          proj.appendChild(description)
 
-        } else {
-          let main = document.createElement('main')
-          let error = document.createElement('p')
-          error.textContent = 'Not Found'
-          main.appendChild(error)
-
-          title.textContent = '404 | alegremrvn'
-          display.appendChild(navbar)
-          display.appendChild(main)
-          display.appendChild(hr)
-          display.appendChild(turtle)
+          let tags = document.createElement('div')
+          tags.setAttribute('class', 'tags')
+          for (let j in projects[i].tags) {
+            let tag = document.createElement('p')
+            tag.textContent = projects[i].tags[j]
+            tag.setAttribute('class', 'tag')
+            tags.appendChild(tag)
+          }
+          proj.appendChild(tags)
 
         }
-      })
-    </script>
-  </body>
+
+        display.appendChild(turtle)
+
+      } else if (window.location.pathname === '/contact') {
+        let main = document.createElement('main')
+        let email = document.createElement('p')
+        let emaillink = document.createElement('a')
+        emaillink.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
+        emaillink.textContent = 'alegremrvn@protonmail.com'
+        email.appendChild(emaillink)
+        main.appendChild(email)
+
+        title.textContent = 'Contact | alegremrvn'
+        display.appendChild(navbar)
+        display.appendChild(main)
+        display.appendChild(hr)
+        display.appendChild(turtle)
+
+        document.getElementById('about-btn').style.backgroundColor = '#333'
+        document.getElementById('contact-btn').style.backgroundColor = '#555'
+
+      } else if (window.location.pathname === '/etc') {
+        title.textContent = 'Etc | alegremrvn'
+        display.appendChild(navbar)
+        display.appendChild(turtle)
+
+        document.getElementById('about-btn').style.backgroundColor = '#333'
+        document.getElementById('etc-btn').style.backgroundColor = '#555'
+
+      } else {
+        let main = document.createElement('main')
+        let error = document.createElement('p')
+        error.textContent = 'Not Found'
+        main.appendChild(error)
+
+        title.textContent = '404 | alegremrvn'
+        display.appendChild(navbar)
+        display.appendChild(main)
+        display.appendChild(hr)
+        display.appendChild(turtle)
+
+      }
+    })
+  </script>
+</body>
+
 </html>
