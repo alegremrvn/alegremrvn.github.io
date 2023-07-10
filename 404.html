@@ -70,6 +70,44 @@
       background-color: #7bad18;
       margin: 16px;
     }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    .project {
+      border: 1px solid black;
+      border-radius: 7px;
+      margin: 10px;
+      max-width: 350px;
+      padding: 10px;
+    }
+
+    .project ul {
+      display: flex;
+
+      font-size: 16px;
+      list-style: none;
+    }
+
+    .project ul li {
+      margin: 5px;
+      border: 1px solid white;
+      padding: 4px;
+    }
+
+    .tags {
+      max-width: 400px;
+      margin: 20px;
+      padding: 6px;
+    }
+
+    .tags button {
+      margin: 2px;
+      border-radius: 3px;
+
+      font-size: 18px;
+    }
   </style>
 </head>
 
@@ -89,12 +127,29 @@
       let title = document.getElementById('title')
 
       if (window.location.pathname === '/projects') {
-        let projects = [
+        let projectsData = [
           {
-            name: "Philippine Earthquakes in 2022",
+            projectName: "Philippine Earthquakes in 2022",
             description: "A simple \"dashboard\" that summarizes the information on all earthquakes in the Philippines in the year 2022.",
             tags: ["excel", "dashboard"],
             location: "https://github.com/alegremrvn/philippine_earthquakes"
+          },
+          {
+            projectName: 'alegremrvn.github.io',
+            tags: [
+              'html',
+              'css',
+              'javascript'
+            ]
+          },
+          {
+            projectName: 'project3',
+            tags: [
+              'nodejs',
+              'express',
+              'react',
+              'mongodb'
+            ]
           }
         ]
 
@@ -104,35 +159,98 @@
         document.getElementById('about-btn').style.backgroundColor = '#333'
         document.getElementById('projects-btn').style.backgroundColor = '#555'
 
-        for (let i in projects) {
-          let main = document.createElement('main')
-
-          let proj = document.createElement('div')
-          proj.setAttribute('class', 'proj')
-
-          let name = document.createElement('p')
-          name.textContent = projects[i].name
-          name.setAttribute('class', 'name')
-
-          let description = document.createElement('p')
-          description.textContent = projects[i].description
-          description.setAttribute('class', 'description')
-
-          proj.appendChild(name)
-          proj.appendChild(description)
-
-          let tags = document.createElement('div')
-          tags.setAttribute('class', 'tags')
-          for (let j in projects[i].tags) {
-            let tag = document.createElement('p')
-            tag.textContent = projects[i].tags[j]
-            tag.setAttribute('class', 'tag')
-            tags.appendChild(tag)
+        let tags = new Set()
+        for (let project of projectsData) {
+          for (let tag of project.tags) {
+            tags.add(tag)
           }
-          proj.appendChild(tags)
-
         }
 
+        let tagsElement = document.createElement('div')
+        tagsElement.setAttribute('class', 'tags')
+        for (let tag of tags) {
+          let tagElement = document.createElement('button')
+          tagElement.setAttribute('id', tag)
+          tagElement.textContent = tag
+
+          tagsElement.appendChild(tagElement)
+        }
+        display.appendChild(tagsElement)
+
+        let projectsElement = document.createElement('div')
+        projectsElement.setAttribute('id', 'projects')
+        for (let project of projectsData) {
+          let projectElement = document.createElement('div')
+          projectElement.setAttribute('class', 'project')
+
+          let name = document.createElement('h3')
+          name.textContent = project.projectName
+          projectElement.appendChild(name)
+
+          let ul = document.createElement('ul')
+          for (let tag of project.tags) {
+            let li = document.createElement('li')
+            li.textContent = tag
+            ul.appendChild(li)
+          }
+          projectElement.appendChild(ul)
+
+          projectsElement.appendChild(projectElement)
+        }
+        display.appendChild(projectsElement)
+
+        let filters = []
+        let buttons = document.getElementsByTagName('button')
+        for (let button of buttons) {
+          button.addEventListener('click', () => {
+            if (!filters.includes(button.getAttribute('id'))) {
+              button.setAttribute('style', 'background-color: yellow;')
+              filters.push(button.getAttribute('id'))
+            } else {
+              button.setAttribute('style', 'background-color: #e9e9ed;')
+              filters.pop(button.getAttribute('id'))
+            }
+
+            document.getElementById('projects').remove()
+            hr.remove()
+            turtle.remove()
+            let projects = document.createElement('div')
+            projects.setAttribute('id', 'projects')
+
+            for (let proj of projectsData) {
+              let count = 0
+              for (let filter of filters) {
+                if (proj.tags.includes(filter)) {
+                  count++
+                }
+              }
+              if (count === filters.length) {
+                let project = document.createElement('div')
+                project.setAttribute('class', 'project')
+
+                let projName = document.createElement('h3')
+                projName.textContent = proj.projectName
+                project.appendChild(projName)
+
+                let projTags = document.createElement('ul')
+                for (let tag of proj.tags) {
+                  let li = document.createElement('li')
+                  li.textContent = tag
+                  projTags.appendChild(li)
+                }
+                project.appendChild(projTags)
+
+                projects.appendChild(project)
+              }
+            }
+
+            display.append(projects)
+            display.appendChild(hr)
+            display.appendChild(turtle)
+          })
+        }
+
+        display.appendChild(hr)
         display.appendChild(turtle)
 
       } else if (window.location.pathname === '/contact') {
