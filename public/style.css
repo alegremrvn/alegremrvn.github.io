@@ -63,3 +63,42 @@ a {
   background-color: #7bad18;
   margin: 16px;
 }
+
+
+h3 {
+  font-size: 24px;
+}
+
+.project {
+  border: 1px solid black;
+  border-radius: 7px;
+  margin: 10px;
+  max-width: 350px;
+  padding: 10px;
+}
+
+.project ul {
+  display: flex;
+
+  font-size: 16px;
+  list-style: none;
+}
+
+.project ul li {
+  margin: 5px;
+  border: 1px solid white;
+  padding: 4px;
+}
+
+.tags {
+  max-width: 400px;
+  margin: 20px;
+  padding: 6px;
+}
+
+.tags button {
+  margin: 2px;
+  border-radius: 3px;
+
+  font-size: 18px;
+}
