@@ -56,13 +56,20 @@ if (window.location.pathname === '/projects') {
   let filters = []
   let buttons = document.getElementsByTagName('button')
   for (let button of buttons) {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
       if (!filters.includes(button.getAttribute('id'))) {
         button.setAttribute('style', 'background-color: yellow;')
         filters.push(button.getAttribute('id'))
       } else {
         button.setAttribute('style', 'background-color: #e9e9ed;')
-        filters.pop(button.getAttribute('id'))
+        let count = 0
+        for (let tag of filters) {
+          if (tag === e.target.getAttribute('id')) {
+            filters.splice(count, 1)
+            break
+          }
+          count++
+        }
       }
 
       document.getElementById('projects').remove()
