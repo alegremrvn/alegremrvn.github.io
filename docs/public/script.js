@@ -41,6 +41,22 @@ if (window.location.pathname === '/projects') {
     name.textContent = project.projectName
     projectElement.appendChild(name)
 
+    let description = document.createElement('p')
+    description.textContent = project.description
+    projectElement.appendChild(description)
+
+    let repo = document.createElement('a')
+    repo.textContent = 'repo'
+    repo.setAttribute('href', project.repo)
+    repo.setAttribute('class', 'project-link')
+    projectElement.appendChild(repo)
+
+    let url = document.createElement('a')
+    url.textContent = 'url'
+    url.setAttribute('href', project.url)
+    url.setAttribute('class', 'project-link')
+    projectElement.appendChild(url)
+
     let ul = document.createElement('ul')
     for (let tag of project.tags) {
       let li = document.createElement('li')
@@ -72,9 +88,12 @@ if (window.location.pathname === '/projects') {
         }
       }
 
+      // projects tear down
       document.getElementById('projects').remove()
       hr.remove()
       turtle.remove()
+
+      // projects rebuild according to latest filters
       let projects = document.createElement('div')
       projects.setAttribute('id', 'projects')
 
@@ -92,6 +111,22 @@ if (window.location.pathname === '/projects') {
           let projName = document.createElement('h3')
           projName.textContent = proj.projectName
           project.appendChild(projName)
+
+          let description = document.createElement('p')
+          description.textContent = proj.description
+          project.appendChild(description)
+      
+          let repo = document.createElement('a')
+          repo.textContent = 'repo'
+          repo.setAttribute('href', proj.repo)
+          repo.setAttribute('class', 'project-link')
+          project.appendChild(repo)
+
+          let url = document.createElement('a')
+          url.textContent = 'url'
+          url.setAttribute('href', proj.url)
+          url.setAttribute('class', 'project-link')
+          project.appendChild(url)
 
           let projTags = document.createElement('ul')
           for (let tag of proj.tags) {

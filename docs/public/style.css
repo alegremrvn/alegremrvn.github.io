@@ -102,3 +102,8 @@ h3 {
 
   font-size: 18px;
 }
+
+.project-link {
+  display: inline-block;
+  margin: 0 10px;
+}
