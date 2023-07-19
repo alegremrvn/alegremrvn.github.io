@@ -35,8 +35,8 @@ if (window.location.pathname === '/projects') {
     tagsCountSorted.push(pair)
   }
   tagsCountSorted.sort((a, b) => b[1] - a[1])
-  console.log(tagsCountSorted)//////////////////////
 
+  // build initial project list
   let tagsElement = document.createElement('div')
   tagsElement.setAttribute('class', 'tags')
   for (let tag of tagsCountSorted) {
@@ -77,7 +77,10 @@ if (window.location.pathname === '/projects') {
     let ul = document.createElement('ul')
     for (let tag of project.tags) {
       let li = document.createElement('li')
-      li.textContent = tag
+      let a = document.createElement('a')
+      a.textContent = tag
+      a.setAttribute('href', techLinks[tag])
+      li.appendChild(a)
       ul.appendChild(li)
     }
     projectElement.appendChild(ul)
@@ -148,7 +151,10 @@ if (window.location.pathname === '/projects') {
           let projTags = document.createElement('ul')
           for (let tag of proj.tags) {
             let li = document.createElement('li')
-            li.textContent = tag
+            let a = document.createElement('a')
+            a.textContent = tag
+            a.setAttribute('href', techLinks[tag])
+            li.appendChild(a)
             projTags.appendChild(li)
           }
           project.appendChild(projTags)
