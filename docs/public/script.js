@@ -13,19 +13,36 @@ if (window.location.pathname === '/projects') {
   document.getElementById('about-btn').style.backgroundColor = '#333'
   document.getElementById('projects-btn').style.backgroundColor = '#555'
 
+  let tagsCount = {}
   let tags = new Set()
   for (let project of projectsData) {
     for (let tag of project.tags) {
+      if (tagsCount[tag]) {
+        tagsCount[tag]++
+      } else {
+        tagsCount[tag] = 1
+      }
+
       tags.add(tag)
     }
   }
 
+  let tagsCountSorted = []
+  for (let tag in tagsCount) {
+    let pair = []
+    pair.push(tag)
+    pair.push(tagsCount[tag])
+    tagsCountSorted.push(pair)
+  }
+  tagsCountSorted.sort((a, b) => b[1] - a[1])
+  console.log(tagsCountSorted)//////////////////////
+
   let tagsElement = document.createElement('div')
   tagsElement.setAttribute('class', 'tags')
-  for (let tag of tags) {
+  for (let tag of tagsCountSorted) {
     let tagElement = document.createElement('button')
-    tagElement.setAttribute('id', tag)
-    tagElement.textContent = tag
+    tagElement.setAttribute('id', tag[0])
+    tagElement.textContent = tag[0] + ' ' + tag[1]
 
     tagsElement.appendChild(tagElement)
   }
@@ -115,7 +132,7 @@ if (window.location.pathname === '/projects') {
           let description = document.createElement('p')
           description.textContent = proj.description
           project.appendChild(description)
-      
+
           let repo = document.createElement('a')
           repo.textContent = 'repo'
           repo.setAttribute('href', proj.repo)
