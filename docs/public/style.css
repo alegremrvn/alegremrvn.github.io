@@ -29,8 +29,7 @@ a {
 
 
 /* NAVBAR */
-#nav-ul {
-  list-style-type: none;
+nav {
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -38,11 +37,8 @@ a {
   width: 100%;
 }
 
-.nav-li {
+nav a {
   float: right;
-}
-
-.nav-li a {
   display: block;
   color: white;
   text-align: center;
@@ -50,11 +46,11 @@ a {
   text-decoration: none;
 }
 
-.nav-li a:hover {
+nav a:hover {
   background-color: #111;
 }
 
-#about-btn {
+nav .active {
   background-color: #555;
 }
 

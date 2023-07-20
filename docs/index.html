@@ -7,15 +7,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="public/style.css">
   <script src="https://kit.fontawesome.com/e7209d63e4.js" crossorigin="anonymous"></script>
+  <style>
+    .icon {
+      display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+      nav a:not(.active) {
+        display: none;
+      }
+
+      nav a {
+        float: left;
+      }
+
+      nav a.icon {
+        display: block;
+        float: right;
+      }
+
+      nav.responsive {
+        position: relative;
+      }
+
+      nav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      nav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
   <nav>
-    <ul id="nav-ul">
-      <li class="nav-li"><a id="etc-btn" href="/etc" tabindex="4">ETC</a></li>
-      <li class="nav-li"><a id="projects-btn" href="/projects" tabindex="2">PROJECTS</a></li>
-      <li class="nav-li"><a id="about-btn" href="#" tabindex="1">ABOUT</a></li>
-    </ul>
+    <a id="projects-btn" href="/projects" tabindex="2">PROJECTS</a>
+    <a id="about-btn" class="active" href="#" tabindex="1">ABOUT</a>
+    <a href="javascript:void(0)" class="icon" onclick="myFunction()">
+      <i class="fa fa-caret-down"></i>
+    </a>
   </nav>
 
   <main>
@@ -39,7 +76,8 @@
       <li><a href="https://github.com/alegremrvn" target="_blank">github</a></li>
     </ul>
 
-    <p>You are welcome to contact me anytime about anything. Here is my email address: <a href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>.</p>
+    <p>You are welcome to contact me anytime about anything. Here is my email address: <a
+        href="mailto:alegremrvn@protonmail.com">alegremrvn@protonmail.com</a>.</p>
 
     <p>Have a great life!</p>
 
@@ -53,6 +91,17 @@
       <div id="turtle"></div>
     </footer>
   </main>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementsByTagName("nav")[0];
+      if (x.className === "") {
+        x.className += "responsive";
+      } else {
+        x.className = "";
+      }
+    } 
+  </script>
 </body>
 
 </html>
