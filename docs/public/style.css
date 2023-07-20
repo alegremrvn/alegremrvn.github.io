@@ -66,6 +66,8 @@ nav .active {
 
 
 h3 {
+  margin: 0;
+  padding: 0;
   font-size: 24px;
 }
 
@@ -92,8 +94,8 @@ h3 {
 
 .tags {
   max-width: 400px;
-  margin: 20px;
   padding: 6px;
+  margin: 20px auto;
 }
 
 .tags button {
@@ -106,4 +108,57 @@ h3 {
 .project-link {
   display: inline-block;
   margin: 0 10px;
+}
+
+.project {
+  padding: 10px;
+  margin: 30px auto;
+}
+
+.icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    margin: 0;
+    max-width: 1000px;
+    background-color: #e4e4e4;
+  }
+
+  nav a:not(.active) {
+    display: none;
+  }
+
+  nav a {
+    float: left;
+  }
+
+  nav a.icon {
+    display: block;
+    float: right;
+  }
+
+  nav.responsive {
+    position: relative;
+  }
+
+  nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+}
+
+#project-display {
+  max-width: 700px;
+  padding: 10px;
+  margin: 0 auto; 
 }

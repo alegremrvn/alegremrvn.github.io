@@ -1,14 +1,41 @@
+let body = document.body
+let projectDisplay = document.createElement('div')
+projectDisplay.setAttribute('id', 'project-display')
 let navbar = document.createElement('nav')
-navbar.innerHTML = '<ul id="nav-ul"><li class="nav-li"><a id="about-btn" href="/">ABOUT</a></li><li class="nav-li"><a id="projects-btn" href="/projects">PROJECTS</a></li><li class="nav-li"><a id="contact-btn" href="/contact">CONTACT</a></li><li class="nav-li"><a id="etc-btn" href="/etc">ETC</a></li></ul>'
+let fn = (nav) => {
+  let projectButton = document.createElement('a')
+  projectButton.setAttribute('href', '#')
+  projectButton.setAttribute('tabindex', 2)
+  projectButton.setAttribute('id', 'about-btn')
+  projectButton.textContent = 'PROJECTS'
+  nav.appendChild(projectButton)
+
+  let aboutButton = document.createElement('a')
+  aboutButton.setAttribute('href', '/')
+  aboutButton.setAttribute('tabindex', 1)
+  aboutButton.setAttribute('id', 'projects-btn')
+  aboutButton.textContent = 'ABOUT'
+  nav.appendChild(aboutButton)
+
+  let icon = document.createElement('i')
+  icon.setAttribute('class', 'fa fa-caret-down')
+
+  let dropDown = document.createElement('a')
+  dropDown.setAttribute('href', 'javascript:void(0)')
+  dropDown.setAttribute('class', 'icon')
+  dropDown.setAttribute('onclick', 'myFunction()')
+  dropDown.appendChild(icon)
+}
+fn(navbar)
 let turtle = document.createElement('div')
 turtle.setAttribute('id', 'turtle')
 let hr = document.createElement('hr')
-let display = document.getElementById('display')
 let title = document.getElementById('title')
 
 if (window.location.pathname === '/projects') {
   title.textContent = 'Projects | alegremrvn'
-  display.appendChild(navbar)
+  body.appendChild(navbar)
+  body.appendChild(projectDisplay)
 
   document.getElementById('about-btn').style.backgroundColor = '#333'
   document.getElementById('projects-btn').style.backgroundColor = '#555'
@@ -46,7 +73,7 @@ if (window.location.pathname === '/projects') {
 
     tagsElement.appendChild(tagElement)
   }
-  display.appendChild(tagsElement)
+  projectDisplay.appendChild(tagsElement)
 
   let projectsElement = document.createElement('div')
   projectsElement.setAttribute('id', 'projects')
@@ -63,13 +90,17 @@ if (window.location.pathname === '/projects') {
     projectElement.appendChild(description)
 
     let repo = document.createElement('a')
-    repo.textContent = 'repo'
+    let githubIcon = document.createElement('i')
+    githubIcon.setAttribute('class', 'fa fa-brand fa-github')
+    repo.appendChild(githubIcon)
     repo.setAttribute('href', project.repo)
     repo.setAttribute('class', 'project-link')
     projectElement.appendChild(repo)
 
     let url = document.createElement('a')
-    url.textContent = 'url'
+    let urlIcon = document.createElement('i')
+    urlIcon.setAttribute('class', 'fa-solid fa-link')
+    url.appendChild(urlIcon)
     url.setAttribute('href', project.url)
     url.setAttribute('class', 'project-link')
     projectElement.appendChild(url)
@@ -87,7 +118,7 @@ if (window.location.pathname === '/projects') {
 
     projectsElement.appendChild(projectElement)
   }
-  display.appendChild(projectsElement)
+  projectDisplay.appendChild(projectsElement)
 
   let filters = []
   let buttons = document.getElementsByTagName('button')
@@ -137,13 +168,17 @@ if (window.location.pathname === '/projects') {
           project.appendChild(description)
 
           let repo = document.createElement('a')
-          repo.textContent = 'repo'
+          let githubIcon = document.createElement('i')
+          githubIcon.setAttribute('class', 'fa fa-brand fa-github')
+          repo.appendChild(githubIcon)
           repo.setAttribute('href', proj.repo)
           repo.setAttribute('class', 'project-link')
           project.appendChild(repo)
 
           let url = document.createElement('a')
-          url.textContent = 'url'
+          let urlIcon = document.createElement('i')
+          urlIcon.setAttribute('class', 'fa-solid fa-link')
+          url.appendChild(urlIcon)
           url.setAttribute('href', proj.url)
           url.setAttribute('class', 'project-link')
           project.appendChild(url)
@@ -163,40 +198,14 @@ if (window.location.pathname === '/projects') {
         }
       }
 
-      display.append(projects)
-      display.appendChild(hr)
-      display.appendChild(turtle)
+      projectDisplay.appendChild(projects)
+      projectDisplay.appendChild(hr)
+      projectDisplay.appendChild(turtle)
     })
   }
 
-  display.appendChild(hr)
-  display.appendChild(turtle)
-
-} else if (window.location.pathname === '/contact') {
-  let main = document.createElement('main')
-  let email = document.createElement('p')
-  let emaillink = document.createElement('a')
-  emaillink.setAttribute('href', 'mailto:alegremrvn@protonmail.com')
-  emaillink.textContent = 'alegremrvn@protonmail.com'
-  email.appendChild(emaillink)
-  main.appendChild(email)
-
-  title.textContent = 'Contact | alegremrvn'
-  display.appendChild(navbar)
-  display.appendChild(main)
-  display.appendChild(hr)
-  display.appendChild(turtle)
-
-  document.getElementById('about-btn').style.backgroundColor = '#333'
-  document.getElementById('contact-btn').style.backgroundColor = '#555'
-
-} else if (window.location.pathname === '/etc') {
-  title.textContent = 'Etc | alegremrvn'
-  display.appendChild(navbar)
-  display.appendChild(turtle)
-
-  document.getElementById('about-btn').style.backgroundColor = '#333'
-  document.getElementById('etc-btn').style.backgroundColor = '#555'
+  projectDisplay.appendChild(hr)
+  projectDisplay.appendChild(turtle)
 
 } else {
   let main = document.createElement('main')
@@ -205,10 +214,11 @@ if (window.location.pathname === '/projects') {
   main.appendChild(error)
 
   title.textContent = '404 | alegremrvn'
-  display.appendChild(navbar)
-  display.appendChild(main)
-  display.appendChild(hr)
-  display.appendChild(turtle)
+  body.appendChild(navbar)
+  body.appendChild(projectDisplay)
+  projectDisplay.appendChild(main)
+  projectDisplay.appendChild(hr)
+  projectDisplay.appendChild(turtle)
 
   document.getElementById('about-btn').style.backgroundColor = '#333'
 }
