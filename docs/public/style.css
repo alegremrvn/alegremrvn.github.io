@@ -3,7 +3,9 @@ body {
 }
 
 main {
+  max-width: 700px;
   padding: 10px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -16,7 +18,7 @@ p {
 }
 
 hr {
-  width: 700px;
+  max-width: 700px;
   margin-left: 0;
 }
 
@@ -33,11 +35,11 @@ a {
   padding: 0;
   overflow: hidden;
   background-color: #333;
-  width: 700px;
+  width: 100%;
 }
 
 .nav-li {
-  float: left;
+  float: right;
 }
 
 .nav-li a {
