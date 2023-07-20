@@ -1,5 +1,7 @@
 body {
-  margin: 0;
+  margin: 10px auto;
+  max-width: 1000px;
+  background-color: #e4e4e4;
 }
 
 main {
