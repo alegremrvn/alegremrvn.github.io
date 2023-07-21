@@ -11,6 +11,26 @@ let projectsData = [
       'express'
     ]
   },
+  {
+    projectName: 'fcc-product-landing-page',
+    description: 'A project requirement for fCC\'s Responsive Web Design Certification.',
+    url: 'https://fcc-product-landing-page.alegremrvn.repl.co',
+    repo: 'https://github.com/alegremrvn/fcc-product-landing-page',
+    tags: [
+      'html',
+      'css',
+    ]
+  },
+  {
+    projectName: 'fcc-survey-form',
+    description: 'A project requirement for fCC\'s Responsive Web Design Certification.',
+    url: 'https://fcc-survey-form.alegremrvn.repl.co',
+    repo: 'https://github.com/alegremrvn/fcc-survey-form',
+    tags: [
+      'html',
+      'css',
+    ]
+  },
 ]
 
 let techLinks = {
