@@ -81,6 +81,8 @@ h3 {
 
 .project ul {
   display: flex;
+  flex-wrap: wrap;
+  padding: 0;
 
   font-size: 16px;
   list-style: none;
@@ -93,7 +95,7 @@ h3 {
 }
 
 .tags {
-  max-width: 400px;
+  max-width: 100%;
   padding: 6px;
   margin: 20px auto;
 }
