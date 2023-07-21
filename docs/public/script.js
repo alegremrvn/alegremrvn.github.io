@@ -7,6 +7,7 @@ let fn = (nav) => {
   projectButton.setAttribute('href', '#')
   projectButton.setAttribute('tabindex', 2)
   projectButton.setAttribute('id', 'about-btn')
+  projectButton.setAttribute('class', 'active')
   projectButton.textContent = 'PROJECTS'
   nav.appendChild(projectButton)
 
@@ -25,6 +26,7 @@ let fn = (nav) => {
   dropDown.setAttribute('class', 'icon')
   dropDown.setAttribute('onclick', 'myFunction()')
   dropDown.appendChild(icon)
+  nav.appendChild(dropDown)
 }
 fn(navbar)
 let turtle = document.createElement('div')
@@ -37,8 +39,8 @@ if (window.location.pathname === '/projects') {
   body.appendChild(navbar)
   body.appendChild(projectDisplay)
 
-  document.getElementById('about-btn').style.backgroundColor = '#333'
-  document.getElementById('projects-btn').style.backgroundColor = '#555'
+  document.getElementById('about-btn').style.backgroundColor = '#555'
+  document.getElementById('projects-btn').style.backgroundColor = '#333'
 
   let tagsCount = {}
   let tags = new Set()
@@ -222,3 +224,12 @@ if (window.location.pathname === '/projects') {
 
   document.getElementById('about-btn').style.backgroundColor = '#333'
 }
+
+function myFunction() {
+  var x = document.getElementsByTagName("nav")[0];
+  if (x.className === "") {
+    x.className += "responsive";
+  } else {
+    x.className = "";
+  }
+} 
