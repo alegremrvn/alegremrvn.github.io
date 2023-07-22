@@ -112,6 +112,7 @@ if (window.location.pathname === '/projects') {
     projectCard.appendChild(url)
 
     let ul = document.createElement('ul')
+    ul.setAttribute('class', 'tags')
     for (let tag of project.tags) {
       let li = document.createElement('li')
       let a = document.createElement('a')
@@ -145,68 +146,30 @@ if (window.location.pathname === '/projects') {
         }
       }
 
-      // projects tear down
-      document.getElementById('projects').remove()
-      hr.remove()
-      turtle.remove()
+      let projects = document.getElementsByClassName('project')
+      for (let project of projects) {
+        let tags
+        for (let node of project.childNodes) {
+          if (node.className === 'tags') {
+            tags = node
+          }
+        }
 
-      // projects rebuild according to latest filters
-      let projects = document.createElement('div')
-      projects.setAttribute('id', 'projects')
-
-      for (let proj of projectsData) {
         let count = 0
         for (let filter of filters) {
-          if (proj.tags.includes(filter)) {
-            count++
+          for (let li of tags.childNodes) {
+            if (li.textContent === filter) {
+              count++
+            }
           }
         }
+
         if (count === filters.length) {
-          let project = document.createElement('div')
-          project.setAttribute('class', 'project')
-
-          let projName = document.createElement('h3')
-          projName.textContent = proj.projectName
-          project.appendChild(projName)
-
-          let description = document.createElement('p')
-          description.textContent = proj.description
-          project.appendChild(description)
-
-          let repo = document.createElement('a')
-          let githubIcon = document.createElement('i')
-          githubIcon.setAttribute('class', 'fa fa-brand fa-github')
-          repo.appendChild(githubIcon)
-          repo.setAttribute('href', proj.repo)
-          repo.setAttribute('class', 'project-link')
-          project.appendChild(repo)
-
-          let url = document.createElement('a')
-          let urlIcon = document.createElement('i')
-          urlIcon.setAttribute('class', 'fa-solid fa-link')
-          url.appendChild(urlIcon)
-          url.setAttribute('href', proj.url)
-          url.setAttribute('class', 'project-link')
-          project.appendChild(url)
-
-          let projTags = document.createElement('ul')
-          for (let tag of proj.tags) {
-            let li = document.createElement('li')
-            let a = document.createElement('a')
-            a.textContent = tag
-            a.setAttribute('href', techLinks[tag])
-            li.appendChild(a)
-            projTags.appendChild(li)
-          }
-          project.appendChild(projTags)
-
-          projects.appendChild(project)
+          project.style.display = ''
+        } else {
+          project.style.display = 'none'
         }
       }
-
-      projectsDisplay.appendChild(projects)
-      projectsDisplay.appendChild(hr)
-      projectsDisplay.appendChild(turtle)
     })
   }
 
