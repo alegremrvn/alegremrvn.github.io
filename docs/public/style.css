@@ -94,13 +94,13 @@ h3 {
   padding: 4px;
 }
 
-.tags {
+.filters {
   max-width: 400px;
   padding: 6px;
   margin: 20px auto;
 }
 
-.tags button {
+.filters button {
   margin: 2px;
   border-radius: 3px;
 

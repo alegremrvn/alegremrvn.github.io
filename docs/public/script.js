@@ -1,22 +1,28 @@
 let body = document.body
-let projectDisplay = document.createElement('div')
-projectDisplay.setAttribute('id', 'project-display')
+let projectsDisplay = document.createElement('div')
 let navbar = document.createElement('nav')
-let fn = (nav) => {
-  let projectButton = document.createElement('a')
-  projectButton.setAttribute('href', '#')
-  projectButton.setAttribute('tabindex', 2)
-  projectButton.setAttribute('id', 'about-btn')
-  projectButton.setAttribute('class', 'active')
-  projectButton.textContent = 'PROJECTS'
-  nav.appendChild(projectButton)
+let navProjButton = document.createElement('a')
+let navAboutButton = document.createElement('a')
+let turtle = document.createElement('div')
+let hr = document.createElement('hr')
+let title = document.getElementById('title')
 
-  let aboutButton = document.createElement('a')
-  aboutButton.setAttribute('href', '/')
-  aboutButton.setAttribute('tabindex', 1)
-  aboutButton.setAttribute('id', 'projects-btn')
-  aboutButton.textContent = 'ABOUT'
-  nav.appendChild(aboutButton)
+let buildProjectsDisplay = (pd) => {
+  pd.setAttribute('id', 'project-display')
+}
+let buildNavbar = (nav) => {
+  navProjButton.setAttribute('href', '#')
+  navProjButton.setAttribute('tabindex', 2)
+  navProjButton.setAttribute('id', 'about-btn')
+  navProjButton.setAttribute('class', 'active')
+  navProjButton.textContent = 'PROJECTS'
+  nav.appendChild(navProjButton)
+
+  navAboutButton.setAttribute('href', '/')
+  navAboutButton.setAttribute('tabindex', 1)
+  navAboutButton.setAttribute('id', 'projects-btn')
+  navAboutButton.textContent = 'ABOUT'
+  nav.appendChild(navAboutButton)
 
   let icon = document.createElement('i')
   icon.setAttribute('class', 'fa fa-caret-down')
@@ -24,26 +30,24 @@ let fn = (nav) => {
   let dropDown = document.createElement('a')
   dropDown.setAttribute('href', 'javascript:void(0)')
   dropDown.setAttribute('class', 'icon')
-  dropDown.setAttribute('onclick', 'myFunction()')
+  dropDown.setAttribute('onclick', 'showPages()')
   dropDown.appendChild(icon)
   nav.appendChild(dropDown)
 }
-fn(navbar)
-let turtle = document.createElement('div')
-turtle.setAttribute('id', 'turtle')
-let hr = document.createElement('hr')
-let title = document.getElementById('title')
+let buildTurtle = (turtle) => {
+  turtle.setAttribute('id', 'turtle')
+}
+
+buildProjectsDisplay(projectsDisplay)
+buildNavbar(navbar)
+buildTurtle(turtle)
 
 if (window.location.pathname === '/projects') {
   title.textContent = 'Projects | alegremrvn'
   body.appendChild(navbar)
-  body.appendChild(projectDisplay)
-
-  document.getElementById('about-btn').style.backgroundColor = '#555'
-  document.getElementById('projects-btn').style.backgroundColor = '#333'
+  body.appendChild(projectsDisplay)
 
   let tagsCount = {}
-  let tags = new Set()
   for (let project of projectsData) {
     for (let tag of project.tags) {
       if (tagsCount[tag]) {
@@ -51,8 +55,6 @@ if (window.location.pathname === '/projects') {
       } else {
         tagsCount[tag] = 1
       }
-
-      tags.add(tag)
     }
   }
 
@@ -65,31 +67,33 @@ if (window.location.pathname === '/projects') {
   }
   tagsCountSorted.sort((a, b) => b[1] - a[1])
 
-  // build initial project list
-  let tagsElement = document.createElement('div')
-  tagsElement.setAttribute('class', 'tags')
+  // build filters
+  let filterButtons = document.createElement('div')
+  filterButtons.setAttribute('class', 'filters')
   for (let tag of tagsCountSorted) {
-    let tagElement = document.createElement('button')
-    tagElement.setAttribute('id', tag[0])
-    tagElement.textContent = tag[0] + ' ' + tag[1]
-
-    tagsElement.appendChild(tagElement)
+    let filter = document.createElement('button')
+    filter.setAttribute('id', tag[0])
+    filter.setAttribute('class', 'filter')
+    filter.textContent = tag[0] + ' ' + tag[1]
+    
+    filterButtons.appendChild(filter)
   }
-  projectDisplay.appendChild(tagsElement)
-
-  let projectsElement = document.createElement('div')
-  projectsElement.setAttribute('id', 'projects')
+  projectsDisplay.appendChild(filterButtons)
+  
+  // build initial project list
+  let projects = document.createElement('div')
+  projects.setAttribute('id', 'projects')
   for (let project of projectsData) {
-    let projectElement = document.createElement('div')
-    projectElement.setAttribute('class', 'project')
+    let projectCard = document.createElement('div')
+    projectCard.setAttribute('class', 'project')
 
     let name = document.createElement('h3')
     name.textContent = project.projectName
-    projectElement.appendChild(name)
+    projectCard.appendChild(name)
 
     let description = document.createElement('p')
     description.textContent = project.description
-    projectElement.appendChild(description)
+    projectCard.appendChild(description)
 
     let repo = document.createElement('a')
     let githubIcon = document.createElement('i')
@@ -97,7 +101,7 @@ if (window.location.pathname === '/projects') {
     repo.appendChild(githubIcon)
     repo.setAttribute('href', project.repo)
     repo.setAttribute('class', 'project-link')
-    projectElement.appendChild(repo)
+    projectCard.appendChild(repo)
 
     let url = document.createElement('a')
     let urlIcon = document.createElement('i')
@@ -105,7 +109,7 @@ if (window.location.pathname === '/projects') {
     url.appendChild(urlIcon)
     url.setAttribute('href', project.url)
     url.setAttribute('class', 'project-link')
-    projectElement.appendChild(url)
+    projectCard.appendChild(url)
 
     let ul = document.createElement('ul')
     for (let tag of project.tags) {
@@ -116,14 +120,14 @@ if (window.location.pathname === '/projects') {
       li.appendChild(a)
       ul.appendChild(li)
     }
-    projectElement.appendChild(ul)
+    projectCard.appendChild(ul)
 
-    projectsElement.appendChild(projectElement)
+    projects.appendChild(projectCard)
   }
-  projectDisplay.appendChild(projectsElement)
+  projectsDisplay.appendChild(projects)
 
   let filters = []
-  let buttons = document.getElementsByTagName('button')
+  let buttons = document.getElementsByClassName('filter')
   for (let button of buttons) {
     button.addEventListener('click', (e) => {
       if (!filters.includes(button.getAttribute('id'))) {
@@ -200,14 +204,14 @@ if (window.location.pathname === '/projects') {
         }
       }
 
-      projectDisplay.appendChild(projects)
-      projectDisplay.appendChild(hr)
-      projectDisplay.appendChild(turtle)
+      projectsDisplay.appendChild(projects)
+      projectsDisplay.appendChild(hr)
+      projectsDisplay.appendChild(turtle)
     })
   }
 
-  projectDisplay.appendChild(hr)
-  projectDisplay.appendChild(turtle)
+  projectsDisplay.appendChild(hr)
+  projectsDisplay.appendChild(turtle)
 
 } else {
   let main = document.createElement('main')
@@ -217,19 +221,19 @@ if (window.location.pathname === '/projects') {
 
   title.textContent = '404 | alegremrvn'
   body.appendChild(navbar)
-  body.appendChild(projectDisplay)
-  projectDisplay.appendChild(main)
-  projectDisplay.appendChild(hr)
-  projectDisplay.appendChild(turtle)
+  body.appendChild(projectsDisplay)
+  projectsDisplay.appendChild(main)
+  projectsDisplay.appendChild(hr)
+  projectsDisplay.appendChild(turtle)
 
   document.getElementById('about-btn').style.backgroundColor = '#333'
 }
 
-function myFunction() {
+function showPages() {
   var x = document.getElementsByTagName("nav")[0];
   if (x.className === "") {
     x.className += "responsive";
   } else {
     x.className = "";
   }
-} 
+}
