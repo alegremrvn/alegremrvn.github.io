@@ -11,7 +11,7 @@ let buildProjectsDisplay = (pd) => {
   pd.setAttribute('id', 'project-display')
 }
 let buildNavbar = (nav) => {
-  navProjButton.setAttribute('href', '#')
+  navProjButton.setAttribute('href', '/projects')
   navProjButton.setAttribute('tabindex', 2)
   navProjButton.setAttribute('id', 'about-btn')
   navProjButton.setAttribute('class', 'active')
